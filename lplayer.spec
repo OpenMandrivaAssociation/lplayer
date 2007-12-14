@@ -1,6 +1,6 @@
 %define name	lplayer
-%define version	0.99.3
-%define release %mkrel 3
+%define version	1.0
+%define release %mkrel 1
 
 
 Name: 	 	%{name}
@@ -8,10 +8,10 @@ Summary: 	Music collection manager and player
 Version: 	%{version}
 Release: 	%{release}
 
-Source:		%{name}-%{version}_src.tar.bz2
+Source:		http://nchc.dl.sourceforge.net/sourceforge/lplayer/%{name}_%{version}.tar.gz
 Source1:	lplayer.png
 URL:		http://lplayer.sourceforge.net/
-License:	GPL
+License:	GPLv2+
 Group:		Sound
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	xmms-devel qt3-devel ImageMagick
@@ -30,7 +30,7 @@ maximize the timespan between you hearing the same song twice.
           o the rating and genre 
 
 %prep
-%setup -q
+%setup -q -n %name
 
 %build
 %configure2_5x
