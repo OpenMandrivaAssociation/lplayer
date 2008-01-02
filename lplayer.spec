@@ -13,6 +13,7 @@ Source1:	lplayer.png
 URL:		http://lplayer.sourceforge.net/
 License:	GPLv2+
 Group:		Sound
+BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	xmms-devel qt3-devel ImageMagick
 BuildRequires:	db4.2-devel
 Requires:	xmms
