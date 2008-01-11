@@ -42,10 +42,6 @@ rm -rf $RPM_BUILD_ROOT
 %makeinstall
 
 #menu
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
-cat << EOF > $RPM_BUILD_ROOT%{_menudir}/%{name}
-?package(%{name}): command="%{name}" icon="%{name}.png" needs="x11" title="LongPlayer" longtitle="Playlist manager" section="Multimedia/Sound" xdg="true"
-EOF
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
@@ -85,7 +81,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS BUGS FAQ README TODO
 %{_bindir}/%name
 %{_datadir}/lplayer
-%{_menudir}/%name
 %{_datadir}/applications/mandriva-%{name}.desktop
 %{_liconsdir}/%name.png
 %{_iconsdir}/%name.png
