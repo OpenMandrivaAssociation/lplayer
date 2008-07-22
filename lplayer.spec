@@ -1,6 +1,6 @@
 %define name	lplayer
 %define version	1.0
-%define release %mkrel 1
+%define release %mkrel 3
 
 
 Name: 	 	%{name}
