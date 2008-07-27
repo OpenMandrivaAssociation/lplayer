@@ -1,24 +1,19 @@
-%define name	lplayer
-%define version	1.0
-%define release %mkrel 3
-
-
-Name: 	 	%{name}
+Name: 	 	lplayer
 Summary: 	Music collection manager and player
-Version: 	%{version}
-Release: 	%{release}
-
-Source:		http://nchc.dl.sourceforge.net/sourceforge/lplayer/%{name}_%{version}.tar.gz
-Source1:	lplayer.png
-URL:		http://lplayer.sourceforge.net/
+Version: 	1.0
+Release: 	%mkrel 3
 License:	GPLv2+
 Group:		Sound
-BuildRoot:	%{_tmppath}/%{name}-buildroot
+URL:		http://lplayer.sourceforge.net/
+Source:		http://nchc.dl.sourceforge.net/sourceforge/lplayer/%{name}_%{version}.tar.gz
+Source1:	lplayer.png
+Patch0:		lplayer-db4_headers_fix.diff
 BuildRequires:	xmms-devel qt3-devel ImageMagick
-BuildRequires:	db4.2-devel
+BuildRequires:	db4-devel
 Requires:	xmms
 Provides:	longplayer
 Obsoletes:	longplayer
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 LongPlayer is a program that automatically fills your XMMS.  LongPlayer tries
@@ -31,20 +26,26 @@ maximize the timespan between you hearing the same song twice.
           o the rating and genre 
 
 %prep
+
 %setup -q -n %name
+%patch0 -p0
 
 %build
+rm -f configure
+autoreconf -fis
+
 %configure2_5x
 make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
+
 %makeinstall
 
 #menu
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
+mkdir -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
 Name=LongPlayer
 Comment=%{summary}
@@ -58,17 +59,14 @@ EOF
 
 #icons
 # ImageMagick didn't like included icon
-mkdir -p $RPM_BUILD_ROOT/%_liconsdir
-convert -size 48x48 %SOURCE1 $RPM_BUILD_ROOT/%_liconsdir/%name.png
-mkdir -p $RPM_BUILD_ROOT/%_iconsdir
-convert -size 32x32 %SOURCE1 $RPM_BUILD_ROOT/%_iconsdir/%name.png
-mkdir -p $RPM_BUILD_ROOT/%_miconsdir
-convert -size 16x16 %SOURCE1 $RPM_BUILD_ROOT/%_miconsdir/%name.png
+mkdir -p %{buildroot}/%_liconsdir
+convert -size 48x48 %SOURCE1 %{buildroot}/%_liconsdir/%name.png
+mkdir -p %{buildroot}/%_iconsdir
+convert -size 32x32 %SOURCE1 %{buildroot}/%_iconsdir/%name.png
+mkdir -p %{buildroot}/%_miconsdir
+convert -size 16x16 %SOURCE1 %{buildroot}/%_miconsdir/%name.png
 
 %find_lang %name
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %if %mdkversion < 200900
 %post
@@ -80,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 %clean_menus
 %endif
 
+%clean
+rm -rf %{buildroot}
+
 %files -f %{name}.lang
 %defattr(-,root,root)
 %doc AUTHORS BUGS FAQ README TODO
@@ -89,4 +90,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_liconsdir}/%name.png
 %{_iconsdir}/%name.png
 %{_miconsdir}/%name.png
-
