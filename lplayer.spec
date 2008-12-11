@@ -8,7 +8,7 @@ URL:		http://lplayer.sourceforge.net/
 Source:		http://nchc.dl.sourceforge.net/sourceforge/lplayer/%{name}_%{version}.tar.gz
 Source1:	lplayer.png
 Patch0:		lplayer-db4_headers_fix.diff
-BuildRequires:	xmms-devel qt3-devel ImageMagick
+BuildRequires:	xmms-devel qt3-devel imagemagick
 BuildRequires:	db4-devel
 Requires:	xmms
 Provides:	longplayer
