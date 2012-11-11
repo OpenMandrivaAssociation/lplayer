@@ -1,0 +1,11 @@
+--- configure.in	2005-03-30 17:05:49.000000000 +0200
++++ configure.in.oden	2008-07-27 13:54:53.000000000 +0200
+@@ -90,7 +90,7 @@
+ #if test "$use_berkeleydb" = yes; then
+     AC_CHECK_LIB([db_cxx], [__db_pget_pp], [], 
+                  AC_MSG_ERROR([Berkeley DB library not found]))
+-    AC_CHECK_HEADER([db_cxx.h],[],
++    AC_CHECK_HEADER([db4/db_cxx.h],[],
+                  AC_MSG_ERROR([Berkeley DB includes not found]))
+ #fi 
+ 
