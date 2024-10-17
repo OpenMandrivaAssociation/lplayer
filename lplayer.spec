@@ -4,7 +4,7 @@ Version: 	1.0
 Release: 	%mkrel 4
 License:	GPLv2+
 Group:		Sound
-URL:		http://lplayer.sourceforge.net/
+URL:		https://lplayer.sourceforge.net/
 Source:		http://nchc.dl.sourceforge.net/sourceforge/lplayer/%{name}_%{version}.tar.gz
 Source1:	lplayer.png
 Patch0:		lplayer-db4_headers_fix.diff
