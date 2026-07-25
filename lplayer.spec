@@ -1,7 +1,7 @@
 Name: 	 	lplayer
 Summary: 	Music collection manager and player
 Version: 	1.0
-Release: 	%mkrel 4
+Release: 	5
 License:	GPLv2+
 Group:		Sound
 URL:		https://lplayer.sourceforge.net/
